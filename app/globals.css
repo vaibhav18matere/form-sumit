@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --brand: #0c4a8c;
 }
 
 @theme inline {
@@ -22,5 +23,29 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Mobile-friendly controls: min 44px height, 16px text (reduces iOS input zoom) */
+.input {
+  @apply w-full min-h-[2.75rem] px-3 py-2.5 text-base leading-normal border border-slate-200 rounded-xl bg-white text-slate-900 shadow-sm placeholder:text-slate-400 touch-manipulation transition-[border-color,box-shadow] focus:outline-none focus:ring-2 focus:ring-[var(--brand)] focus:border-[var(--brand)];
+}
+
+.input:focus-visible {
+  @apply ring-offset-2 ring-offset-white;
+}
+
+select.input {
+  @apply appearance-none bg-[length:1rem] bg-[right_0.75rem_center] bg-no-repeat pr-10;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+}
+
+textarea.input {
+  @apply min-h-[7rem] py-3;
+}
+
+.input-compact {
+  @apply min-h-[2.75rem] py-2 text-base sm:text-sm;
 }
